@@ -1,7 +1,7 @@
 import { Form } from './Form';
 
 export default {
-  title: 'L0002',
+  title: 'L0012',
   component: Form,
   parameters: {
     layout: 'centered',

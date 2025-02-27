@@ -17,13 +17,7 @@ function renderJSON(data) {
 
 function render({ state }) {
   const { data } = state;
-  if (typeof data?.hello === "string") {
-    return <span className="text-sm">{`hello, ${data.hello}!`}</span>;
-  } else if (typeof data.image === "string") {
-    return <img src={data.image} />;
-  } else {
-    return renderJSON(data);
-  }
+  return renderJSON(data);
 }
 
 export const Form = ({ state }) => {

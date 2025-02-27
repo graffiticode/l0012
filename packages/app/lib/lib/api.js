@@ -40,7 +40,7 @@ export const getApiData = async ({ accessToken, id }) => {
 export const postApiCompile = async ({ accessToken, id, data }) => {
   try {
     // console.log(
-    //   "L0002/postApiCompile()",
+    //   "L0012/postApiCompile()",
     //   "id=" + id,
     //   "data=" + JSON.stringify(data, null, 2)
     // );
@@ -57,7 +57,7 @@ export const postApiCompile = async ({ accessToken, id, data }) => {
     }
     return resp.data;
   } catch (err) {
-    console.log("L0002/postApiCompile() err=" + err);
+    console.log("L0012/postApiCompile() err=" + err);
     throw err;
   }
 };
