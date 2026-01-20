@@ -1,4 +1,24 @@
 import "../../index.css";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
+function renderErrors(errors: string[]) {
+  return (
+    <div className="flex flex-col gap-2">
+      {errors.map((error, i) => (
+        <div
+          key={i}
+          className="rounded-md p-3 border text-sm bg-red-50 border-red-200 text-red-800"
+        >
+          {error}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function renderJSON(data) {
   return (
     <pre className="text-xs">{JSON.stringify(data, null, 2)}</pre>
@@ -11,5 +31,8 @@ function render({ state }) {
 }
 
 export const Form = ({ state }) => {
+  if (Array.isArray(state.data.ERRORS) && state.data.ERRORS.length > 0) {
+    return renderErrors(state.data.ERRORS);
+  }
   return render({state});
 }
