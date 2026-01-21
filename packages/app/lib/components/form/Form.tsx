@@ -1,9 +1,5 @@
 import "../../index.css";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 function renderErrors(errors: { message: string; from: number; to: number }[]) {
   return (
     <div className="flex flex-col gap-2">
