@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# L0012
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+L0012 is the **degenerate language** in the Graffiticode ecosystem. It provides idempotent mapping of raw data values to task IDs.
 
-Currently, two official plugins are available:
+## What it does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+L0012 maps arbitrary data values to task IDs idempotently - the same input always produces the same ID. It performs no computation or transformation; it simply stores values and returns stable identifiers.
 
-## Expanding the ESLint configuration
+**Store**: `value` → L0012 → `task ID`
+**Retrieve**: `task ID` → `/data` endpoint → `value`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Examples
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+10          → id1
+{foo: 20}   → id2
+"hello"     → id3
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Submitting the same value twice returns the same task ID - no duplicates are created.
+
+## Purpose
+
+All Graffiticode languages are idempotent by design. L0012 is the minimal case - the identity function of the ecosystem. Use it when you need to:
+
+- Store raw data values and get stable IDs for later retrieval
+- Reference data consistently across the system
+- Deduplicate identical values
+
+## Form view
+
+The form view simply displays the stored value as formatted JSON for inspection. Unlike L0011 (which renders interactive property editors), L0012's form view has no runtime purpose - it's purely for viewing the data.
+
+## Architecture
+
+- **packages/api** - Node.js/Express backend (port 50012)
+- **packages/app** - React/TypeScript frontend for viewing stored data
+
+## Getting started
+
+```bash
+# Install dependencies
+npm install
+
+# Start the API server
+npm start
+```
+
+The API server runs on port 50012 by default.
