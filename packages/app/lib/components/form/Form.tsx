@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import "../../index.css";
 
 function renderErrors(errors: { message: string; from: number; to: number }[]) {
