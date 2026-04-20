@@ -1,0 +1,40 @@
+{
+  "id": "0012",
+  "description": "A minimal Graffiticode display dialect with three primitives: `hello` for rendering a greeting string, `image` for rendering an image from a URL, and `theme \"dark\"/\"light\" (body)` for wrapping either in a light or dark visual theme. Emits one rendered element per program. For richer programs (arithmetic, lists, lambdas, pattern matching) use L0002; for domain-specific artifacts use the corresponding dialect.",
+  "supported_item_types": [
+    "rendered_display",
+    "themed_display"
+  ],
+  "example_prompts": [
+    {
+      "prompt": "Render a hello greeting for 'world' in dark mode.",
+      "produces": "themed_display",
+      "notes": "Canonical themed program — `theme \"dark\" (hello \"world\")..` with the body in parentheses."
+    },
+    {
+      "prompt": "Say hello to 'reader' with the light theme.",
+      "produces": "themed_display",
+      "notes": "Exercises the other theme name so the translator doesn't hardcode `\"dark\"`."
+    },
+    {
+      "prompt": "Display the image at https://example.com/photo.png in dark mode.",
+      "produces": "themed_display",
+      "notes": "Exercises `theme` wrapping `image` rather than `hello` — the same `theme \"dark\" (body)` shape applies."
+    },
+    {
+      "prompt": "Show the picture at https://example.com/cat.jpg with light theme.",
+      "produces": "themed_display",
+      "notes": "Light-themed image — alternate theme + alternate URL so the translator doesn't overfit."
+    },
+    {
+      "prompt": "Render a plain hello greeting for 'world' without a theme.",
+      "produces": "rendered_display",
+      "notes": "Unthemed program — `hello \"world\"..` by itself; makes clear that `theme` is optional."
+    },
+    {
+      "prompt": "Display the image at https://example.com/photo.png without any theme wrapper.",
+      "produces": "rendered_display",
+      "notes": "Unthemed image — `image \"https://example.com/photo.png\"..`; the no-theme variant of the image case."
+    }
+  ]
+}
