@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
-# L0012 User Guide
+# L0012 Usage Guide
 
 Agent-facing guide for authoring L0012 programs. Read this before composing a `create_item` prompt or an `update_item` modification.
 
