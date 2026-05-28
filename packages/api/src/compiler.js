@@ -46,9 +46,15 @@ export class Transformer extends BasisTransformer {
       this.visit(node.elts[1], options, async (e1, v1) => {
         const data = options?.data || {};
         const err = [];
+        // The themed body is spread when it is a record; a non-record body
+        // (e.g. a bare string) is boxed under `value` so it can coexist with
+        // `theme`. State `data` is merged last so a theme toggle overrides
+        // the program's theme.
+        const isRecord = typeof v1 === "object" && v1 !== null && !Array.isArray(v1);
+        const body = isRecord ? v1 : { value: v1 };
         const val = {
+          ...body,
           theme: v0,
-          ...v1,
           ...data,
         };
         resume(err, val);

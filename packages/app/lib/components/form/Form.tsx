@@ -28,8 +28,8 @@ function render({ state }) {
 }
 
 export const Form = ({ state }) => {
-  if (Array.isArray(state.data.errors) && state.data.errors.length > 0) {
-    return renderErrors(state.data.errors);
+  if (Array.isArray(state.errors) && state.errors.length > 0) {
+    return renderErrors(state.errors);
   }
   return render({state});
 }
